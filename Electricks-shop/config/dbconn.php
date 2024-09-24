@@ -1,19 +1,16 @@
 <?php
-// Azure MySQL connection details
-$host = "electroniks.mysql.database.azure.com";  // Replace with your server name
-$user = "electroniks@electroniks";           // Replace with your admin user and server name
-$password = "Shadrack72shadrack72";                          // Replace with your password
-$database = "electricks";                             // Replace with your database name
-
-// Establish a connection to the Azure MySQL database
-$dbconn = mysqli_connect($host, $user, $password, $database);
-
-// Check connection
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    exit();
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:electroniks.database.windows.net,1433; Database = electroniks", "electroniks", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
 }
 
-// Set the default timezone
-date_default_timezone_set("Asia/Manila");
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "electroniks", "pwd" => "Shadrack72shadrack72", "Database" => "electroniks", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:electroniks.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 ?>
