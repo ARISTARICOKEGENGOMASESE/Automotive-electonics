@@ -1,31 +1,47 @@
-## E-commerce Website
-A complete e-commerce website with HTML, CSS and JAVASCRIPT ,also using PHP and MYSQLi during the process to maintain a database...!!!
 
-### Features of this Ecommerce Website
+# Automotive Electronics Management System
 
-- Responsive Navigation Bar with toggle effect
-- Responsive Carousel with Glidejs
-- Categories Section
-- New Arrival Products Section
-- Contact Section
-- Footer
-- Responsive PopUp
-- Product Page with Pagination and Sorting
-- Product Details Page with Image Zoom Effect
-- Cart Page
-- Responsive Login Page
-- Responsive SignUp Page
+## Project Overview
 
-### Steps to follow 
-1.) Download XAMPP Control panel on your system. Link -- https://www.apachefriends.org/ <br>
-2.) Start APACHE server and MySQL module form the XAMPP control panel.<br>
-3.) Click on the Admin button corresponding to MySQL. You will be redirected to localhost/phpmyadmin. <br>
-4.) Now, create a new database named "ecommerce" under the database section. <br>
-5.) Similarly, create a new table in your database named "users" and of 4 columns. <br>
-6.) Set up the fields : id, username, password, created_at . Make id as auto increment. <br>
-7.) Now Fork this project into "C:\xampp\htdocs" , i.e , wherever your XAMPP is located. <br>
-8.) After all these setup, hit url "localhost/ecommerce" on a new tab in your browser to see the project running. <br>
+This project, **Automotive Electronics**, is designed to manage various aspects of automotive electronics through a user-friendly web interface. The system includes functionalities for managing user accounts, storing automotive electronics data, and facilitating smooth data retrieval and interaction.
 
-### Project Collaborators ->
-1.) Tanisha Bhadani --- https://github.com/tanisha-bhadani  <br>
-2.) Rahul Verma ------- https://github.com/inexorable23
+## Features
+
+- **Admin Management**: Allows admin users to manage the system's functionality.
+- **User Authentication**: Secure login system for administrators using username and password.
+- **Database-Driven**: Data is stored in an SQL database for easy access and management.
+
+## Database Structure
+
+The system uses a MySQL database called `electricks` that contains the following important tables:
+
+### `admin`
+This table stores the credentials and personal information of administrators. The fields include:
+- `user_id`: A unique identifier for each admin user.
+- `firstname`: The admin's first name.
+- `lastname`: The admin's last name.
+- `email`: The admin's email address.
+- `username`: The username for login.
+- `password`: The hashed password for login.
+
+## Installation
+
+To set up the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Agostinejohn/Automotive-electronics.git
+   ```
+2. Import the SQL database:
+   - Use phpMyAdmin or the command line to import the `electricks.sql` file.
+   ```bash
+   mysql -u username -p electricks < electricks.sql
+   ```
+
+3. Set up the web server and ensure it can connect to the MySQL database.
+
+## Usage
+
+Once installed and running, the system can be accessed via a web browser where admin users can log in to manage the system.
+
+
