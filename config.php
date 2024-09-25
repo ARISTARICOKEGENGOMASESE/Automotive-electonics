@@ -4,7 +4,7 @@
 define('DB_SERVER', 'tcp:electroniks.database.windows.net,1433');
 define('DB_NAME', 'ecommerce');
 define('DB_USERNAME', 'electroniks');
-define('DB_PASSWORD', '{Shadrack72shadrack72}');
+define('DB_PASSWORD', 'Shadrack72shadrack72');
 
 try {
     $conn = new PDO(
