@@ -30,7 +30,7 @@ To set up the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Agostinejohn/Automotive-electronics.git
+   https://github.com/ARISTARICOKEGENGOMASESE/Automotive-electonics.git
    ```
 2. Import the SQL database:
    - Use phpMyAdmin or the command line to import the `electricks.sql` file.
