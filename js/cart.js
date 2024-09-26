@@ -10,6 +10,7 @@ function addToCart(productId, name, price, image) {
         cart.push({ id: productId, name, price, image, quantity: 1 });
     }
     updateCart();
+    window.location.href = 'cart.html';
 }
 
 // Function to remove a product from the cart
@@ -22,7 +23,7 @@ function removeFromCart(productId) {
 function updateQuantity(productId, newQuantity) {
     const item = cart.find(item => item.id === productId);
     if (item) {
-        item.quantity = Math.max(1, newQuantity);
+        item.quantity = Math.max(1, parseInt(newQuantity));
         updateCart();
     }
 }
@@ -36,15 +37,11 @@ function calculateTotal() {
 function updateCart() {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalElement = document.querySelector('.total-price');
+    const cartIcons = document.querySelectorAll('.cart-icon');
     
     if (cartItemsContainer) {
-        // Clear current cart display
-        cartItemsContainer.innerHTML = '';
-        
-        // Add each item to the cart display
-        cart.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+        cartItemsContainer.innerHTML = cart.map(item => `
+            <tr>
                 <td class="cart-info">
                     <img src="${item.image}" alt="${item.name}">
                     <div>
@@ -55,52 +52,50 @@ function updateCart() {
                 </td>
                 <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)"></td>
                 <td>Ksh ${(item.price * item.quantity).toFixed(2)}</td>
-            `;
-            cartItemsContainer.appendChild(row);
-        });
+            </tr>
+        `).join('');
     }
     
     if (totalElement) {
-        // Update total price
-        const total = calculateTotal();
+        const subtotal = calculateTotal();
+        const tax = subtotal * 0.1;
+        const total = subtotal + tax;
+        
         totalElement.innerHTML = `
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>Ksh ${total.toFixed(2)}</td>
+                    <td>Ksh ${subtotal.toFixed(2)}</td>
                 </tr>
                 <tr>
-                    <td>Tax</td>
-                    <td>Ksh ${(total * 0.1).toFixed(2)}</td>
+                    <td>Tax (10%)</td>
+                    <td>Ksh ${tax.toFixed(2)}</td>
                 </tr>
                 <tr>
-                    <td>Total</td>
-                    <td>Ksh ${(total * 1.1).toFixed(2)}</td>
+                    <td><strong>Total</strong></td>
+                    <td><strong>Ksh ${total.toFixed(2)}</strong></td>
                 </tr>
             </table>
         `;
     }
     
-    // Update cart icon
-    const cartIcons = document.querySelectorAll('.cart-icon');
     cartIcons.forEach(icon => {
         icon.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
     });
 
-    // Save cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Event listener for "Add to Cart" buttons
-document.addEventListener('click', function(e) {
-    if (e.target && e.target.classList.contains('add-to-cart')) {
-        const productId = parseInt(e.target.dataset.id);
-        const name = e.target.dataset.name;
-        const price = parseFloat(e.target.dataset.price);
-        const image = e.target.dataset.image;
-        addToCart(productId, name, price, image);
+// Function to handle "Add to Cart" button clicks
+function handleAddToCart(event) {
+    if (event.target.classList.contains('add-to-cart')) {
+        const { id, name, price, image } = event.target.dataset;
+        addToCart(parseInt(id), name, parseFloat(price), image);
     }
-});
+}
 
-// Initial cart update
-updateCart();
+// Event delegation for "Add to Cart" buttons
+document.addEventListener('click', handleAddToCart);
+
+// Initialize cart on page load
+document.addEventListener('DOMContentLoaded', updateCart);

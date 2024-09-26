@@ -63,28 +63,30 @@
         </div>
     </nav>
 
-    <!-- Product Details -->
     <section class="section product-detail">
         <div class="details container">
-            <div id="product-details">
+            <div id="product-details" class="product-details-container">
                 <!-- Product details will be dynamically inserted here -->
             </div>
+           
         </div>
     </section>
 
-    <!-- Related Products -->
+    <section class="section featured">
         <div class="top container">
-            <h1>Related Products</h1>
+            <h2>Related Products</h2>
             <a href="#" class="view-more">View more</a>
         </div>
         <div class="product-center container">
-            <!-- Related products can be added here -->
+            <!-- Related products will be dynamically inserted here -->
         </div>
     </section>
+
 
    
     <!-- Custom Scripts -->
     <script src="./js/index.js"></script>
+    <script src="cart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get the product ID from the URL
@@ -109,7 +111,7 @@
                     <div class="price">${productDetails.price}</div>
                     <form id="add-to-cart-form">
                         <input type="number" id="quantity" name="quantity" value="1" min="1">
-                        <button type="submit" class="addCart">Add To Cart</button>
+                         <button onclick="addToCart(productId, productName, productPrice)">Add to Cart</button>
                     </form>
                     <h3>Product Detail</h3>
                     <p>${productDetails.description}</p>
