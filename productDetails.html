@@ -11,13 +11,14 @@
     <!-- Custom StyleSheet -->
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js"></script>
+
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="navigation container">
             <div class="logo">
-                <h1>Electroniks</h1>
+                <h1 >Electroniks</h1>
             </div>
 
             <div class="menu">
@@ -72,7 +73,6 @@
     </section>
 
     <!-- Related Products -->
-    <section class="section featured">
         <div class="top container">
             <h1>Related Products</h1>
             <a href="#" class="view-more">View more</a>
@@ -82,62 +82,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="footer" class="section footer">
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-center">
-                    <h3>EXTRAS</h3>
-                    <a href="#">Brands</a>
-                    <a href="#">Gift Certificates</a>
-                    <a href="#">Affiliate</a>
-                    <a href="#">Specials</a>
-                    <a href="#">Site Map</a>
-                </div>
-                <div class="footer-center">
-                    <h3>INFORMATION</h3>
-                    <a href="#">About Us</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms & Conditions</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Site Map</a>
-                </div>
-                <div class="footer-center">
-                    <h3>MY ACCOUNT</h3>
-                    <a href="#">My Account</a>
-                    <a href="#">Order History</a>
-                    <a href="#">Wish List</a>
-                    <a href="#">Newsletter</a>
-                    <a href="#">Returns</a>
-                </div>
-                <div class="footer-center">
-                    <h3>CONTACT US</h3>
-                    <div>
-                        <span>
-                            <i class="fas fa-map-marker-alt"></i>
-                        </span>
-                        42 Dream House, Dreammy street, 7131 Dreamville, USA
-                    </div>
-                    <div>
-                        <span>
-                            <i class="far fa-envelope"></i>
-                        </span>
-                        company@gmail.com
-                    </div>
-                    <div>
-                        <span>
-                            <i class="fas fa-phone"></i>
-                        </span>
-                        456-456-4512
-                    </div>
-                    <div class="payment-methods">
-                        <img src="./images/payment.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+   
     <!-- Custom Scripts -->
     <script src="./js/index.js"></script>
     <script>
@@ -145,6 +90,7 @@
             // Get the product ID from the URL
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
+            
 
             // Fetch product details
             const productDetails = getProductDetails(productId);
@@ -161,26 +107,21 @@
                     <span>${productDetails.category}</span>
                     <h1>${productDetails.name}</h1>
                     <div class="price">${productDetails.price}</div>
-                    <form>
-                        <div>
-                            <select>
-                                <option value="Select Size" selected disabled>Select Size</option>
-                                <option value="1">32</option>
-                                <option value="2">42</option>
-                                <option value="3">52</option>
-                                <option value="4">62</option>
-                            </select>
-                            <span><i class="bx bx-chevron-down"></i></span>
-                        </div>
-                    </form>
-                    <form class="form">
-                        <input type="text" placeholder="1">
-                        <a href="cart.html" class="addCart">Add To Cart</a>
+                    <form id="add-to-cart-form">
+                        <input type="number" id="quantity" name="quantity" value="1" min="1">
+                        <button type="submit" class="addCart">Add To Cart</button>
                     </form>
                     <h3>Product Detail</h3>
                     <p>${productDetails.description}</p>
                 </div>
             `;
+
+            const addToCartForm = document.getElementById('add-to-cart-form');
+            addToCartForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const quantity = document.getElementById('quantity').value;
+                addToCart(productId, quantity);
+            });
         });
 
         // Function to get product details
@@ -245,6 +186,37 @@
             };
             return products[productId] || { name: 'Product Not Found', category: '', price: '', image: '', description: 'Product details not available.' };
         }
+
+        function addToCart(productId, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = getProductDetails(productId);
+            const existingProductIndex = cart.findIndex(item => item.id === productId);
+
+            if (existingProductIndex !== -1) {
+                cart[existingProductIndex].quantity += parseInt(quantity);
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    price: parseFloat(product.price.replace('Ksh ', '').replace(',', '')),
+                    quantity: parseInt(quantity)
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Product added to cart!');
+            updateCartIcon();
+        }
+
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.innerHTML = `<i class="bx bx-shopping-bag"></i><span>${totalItems}</span>`;
+        }
+
+        // Call updateCartIcon on page load
+        updateCartIcon();
     </script>
 </body>
 </html>

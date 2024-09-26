@@ -65,100 +65,24 @@
     <!-- Cart Items -->
     <div class="container cart">
       <table>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="./images/product-2.png" alt="" />
-              <div>
-                <p>Generic Raspberry pi Nucleo</p>
-                <span>Ksh 3,000/=</span> <br />
-                <a href="#">remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" min="1" /></td>
-          <td>Ksh 3,000/=</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="./images/product-3.jpg" alt="" />
-              <div>
-                <p>Boy’s T-Shirt</p>
-                <span>Price: $90.00</span> <br />
-                <a href="#">remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" min="1" /></td>
-          <td>$90.00</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="./images/product-4.jpg" alt="" />
-              <div>
-                <p>Boy’s T-Shirt</p>
-                <span>Price: $60.00</span> <br />
-                <a href="#">remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" min="1" /></td>
-          <td>$60.00</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="./images/product-5.jpg" alt="" />
-              <div>
-                <p>Boy’s T-Shirt</p>
-                <span>Price: $60.00</span> <br />
-                <a href="#">remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" min="1" /></td>
-          <td>$60.00</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="./images/product-6.jpg" alt="" />
-              <div>
-                <p>Boy’s T-Shirt</p>
-                <span>Price: $60.00</span> <br />
-                <a href="#">remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" min="1" /></td>
-          <td>$60.00</td>
-        </tr>
+          <thead>
+              <tr>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+              </tr>
+          </thead>
+          <tbody id="cart-items">
+              <!-- Cart items will be dynamically inserted here -->
+          </tbody>
       </table>
+
       <div class="total-price">
-        <table>
-          <tr>
-            <td>Subtotal</td>
-            <td>$200</td>
-          </tr>
-          <tr>
-            <td>Tax</td>
-            <td>$50</td>
-          </tr>
-          <tr>
-            <td>Total</td>
-            <td>$250</td>
-          </tr>
-        </table>
-        <a href="checkout.html" class="checkout btn">Proceed To Checkout</a>
+          <!-- Total price will be dynamically updated here -->
       </div>
-    </div>
+
+      <a href="checkout.html" class="checkout btn">Proceed To Checkout</a>
+  </div>
 
     <!-- Latest Products -->
     <section class="section featured">
@@ -268,5 +192,7 @@
 
     <!-- Custom Script -->
     <script src="./js/index.js"></script>
+    <script src="cart.js"></script>
+    
   </body>
 </html>

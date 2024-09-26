@@ -66,71 +66,72 @@
                   </div>
             </div>
         </div>
-        <div class="roww">
-            <div class="ccol-75">
-              <div class="ccontainer">
-                <form action="/action_page.php">
-          
-                  <div class="rrow">
-                    <div class="ccol-50">
-                      <h3>Billing Address</h3>
-                      <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                      <input type="text" id="fname" name="firstname" placeholder="John Wabugu">
-                      <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                      <input type="text" id="email" name="email" placeholder="abc@gmail.com">
-                      <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                      <input type="text" id="adr" name="address">
-                      <label for="city"><i class="fa fa-institution"></i> City</label>
-                      <input type="text" id="city" name="city" placeholder="Eg. Nakuru">
-          
-                      <div class="rrow">
-                        <div class="ccol-50">
-                          <label for="state">State</label>
-                          <input type="text" id="state" name="state" placeholder="Eg. Kenya">
-                        </div>
-                        <div class="ccol-50">
-                          <label for="zip">Zip</label>
-                          <input type="text" id="zip" name="zip" placeholder="560064">
-                        </div>
-                      </div>
-                    </div>
-          
-                    <div class="ccol-50">
-                      <h3>Payment</h3>
-                      <label for="fname">Accepted Cards</label>
-                      <div class="icon-container">
-                        <i class="bx bxl-visa bx-tada" style="color:rgb(114, 114, 229);" ></i>
-                        <i class="bx bxs-credit-card bx-tada" style="color:blue;"></i>
-                        <i class="bx bxl-mastercard bx-tada" style="color:red;"></i>
-                      </div>
-                      <label for="cname">Name on Card</label>
-                      <input type="text" id="cname" name="cardname" placeholder="John Wabugu">
-                      <label for="ccnum">Credit card number</label>
-                      <input type="text" id="ccnum" name="cardnumber" placeholder="XXXX XXXX XXXX XXXX">
-                      <label for="expmonth">Exp Month</label>
-                      <input type="text" id="expmonth" name="expmonth" placeholder="September">
-          
-                      <div class="rrow">
-                        <div class="ccol-50">
-                          <label for="expyear">Exp Year</label>
-                          <input type="text" id="expyear" name="expyear" placeholder="2018">
-                        </div>
-                        <div class="ccol-50">
-                          <label for="cvv">CVV</label>
-                          <input type="text" id="cvv" name="cvv" placeholder="352">
-                        </div>
-                      </div>
-                    </div>
-          
+        <main class="container">
+          <h1>Checkout</h1>
+          <div class="roww">
+              <div class="ccol-75">
+                  <div class="ccontainer">
+                      <form action="/action_page.php">
+                          <div class="rrow">
+                              <div class="ccol-50">
+                                  <h3>Billing Address</h3>
+                                  <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                  <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                  <input type="text" id="email" name="email" placeholder="john@example.com">
+                                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                                  <input type="text" id="city" name="city" placeholder="New York">
+                                  <div class="rrow">
+                                      <div class="ccol-50">
+                                          <label for="state">State</label>
+                                          <input type="text" id="state" name="state" placeholder="NY">
+                                      </div>
+                                      <div class="ccol-50">
+                                          <label for="zip">Zip</label>
+                                          <input type="text" id="zip" name="zip" placeholder="10001">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="ccol-50">
+                                  <h3>Payment</h3>
+                                  <label for="cname">Name on Card</label>
+                                  <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                  <label for="ccnum">Credit card number</label>
+                                  <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                  <label for="expmonth">Exp Month</label>
+                                  <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                                  <div class="rrow">
+                                      <div class="ccol-50">
+                                          <label for="expyear">Exp Year</label>
+                                          <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                      </div>
+                                      <div class="ccol-50">
+                                          <label for="cvv">CVV</label>
+                                          <input type="text" id="cvv" name="cvv" placeholder="352">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <label>
+                              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                          </label>
+                          <input type="submit" value="Continue to checkout" class="btn">
+                      </form>
                   </div>
-                  <label>
-                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-                  </label>
-                  <input type="submit" value="Continue to checkout" class="btn">
-                </form>
               </div>
-            </div>
+              <div class="ccol-25">
+                <div class="ccontainer">
+                    <h4>Cart <span class="price" style="color:black"><b class="cart-icon">0</b></span></h4>
+                    <div id="cart-items">
+                        <!-- Cart items will be dynamically inserted here -->
+                    </div>
+                    <hr>
+                    <div class="total-price">
+                        <!-- Total price will be dynamically updated here -->
+                    </div>
+                </div>
           </div>
+      </main>
     </header>
     <footer class="footer">
         <div class="row">
@@ -157,4 +158,34 @@
           </div>
         </div>
       </footer>
+      <script src="cart.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCartSummary();
+        });
+
+        function displayCartSummary() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const cartItemCountElement = document.getElementById('cart-item-count');
+
+            let cartHTML = '';
+            let total = 0;
+            let itemCount = 0;
+
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                itemCount += item.quantity;
+                cartHTML += `<p>${item.name} <span class="price">Ksh ${itemTotal.toFixed(2)}</span></p>`;
+            });
+
+            cartItemsContainer.innerHTML = cartHTML;
+            cartTotalElement.textContent = `Ksh ${total.toFixed(2)}`;
+            cartItemCountElement.textContent = itemCount;
+        }
+    </script>
+
+
 </body>        
