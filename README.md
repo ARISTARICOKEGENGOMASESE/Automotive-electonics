@@ -12,8 +12,7 @@ This project, **Automotive Electronics**, is designed to manage various aspects 
 - **Database-Driven**: Data is stored in an SQL database for easy access and management.
 
 ## Database Structure
-
-The system uses a MySQL database called `electricks` that contains the following important tables:
+The system utilizes a MySQL database named 'electricks', which contains the following key and essential tables, critical for its functionality:
 
 ### `admin`
 This table stores the credentials and personal information of administrators. The fields include:
